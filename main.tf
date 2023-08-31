@@ -48,5 +48,4 @@ resource "aws_autoscalling_group" "main" {
   max_size  = var.max_size
   min_size = var.min_size
   vpc_zone_identifier = var.subnets
-  target_group_arn = [aws_lb_target_group.main.arn]
 }
