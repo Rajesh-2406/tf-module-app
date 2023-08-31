@@ -44,8 +44,8 @@ resource "aws_launch_template" "main" {
   user_data = base64encode("${path.module}/userdata.sh", {
     env       = var.env
     component = var.component
- /* })
-  block_device_mappings {
+  })
+  /* block_device_mappings {
     device_name = "/dev/sda1"
 
     ebs{
@@ -55,7 +55,8 @@ resource "aws_launch_template" "main" {
   }
  }*/
 }
-  resource "aws_autoscaling_group" "main" {
+
+    resource "aws_autoscaling_group" "main" {
     desired_capacity = var.desired_capacity
     max_size = var.max_size
     min_size = var.min_size
