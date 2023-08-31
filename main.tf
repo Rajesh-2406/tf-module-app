@@ -9,6 +9,18 @@ resource "aws_security_group" "main" {
     protocol    = "tcp"
     cidr_blocks = var.sg_subnet_cidr
   }
+  ingress {
+    from_port   = 9100
+    to_port     = 9100
+    protocol    = "tcp"
+    cidr_blocks = var.allow_prometheus_cidr
+  }
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = var.allow_ssh_cidr
+  }
 
   egress {
     from_port   = 0
@@ -21,6 +33,42 @@ resource "aws_security_group" "main" {
     name = "${var.component}-${var.env}-sg"
   }
 }
+
+resource "aws_lb_target_group" "main" {
+  name = "${var.component}-${var.env}-tg"
+  port = var.app_port
+  protocol = "HTTP"
+  deregistration_delay = "30"
+  vpc_id = var.vpc_id
+
+  health_check {
+    enabled = true
+    interval = 5
+    path = "/health"
+    port = var.app_port
+    protocol = "HTTP"
+    timeout = 4
+    healthy_threshold = 2
+    unhealthy_threshold = 2
+  }
+}
+
+resource "aws_lb_listener_rule" "static" {
+  listener_arn = var.listener_arn
+  priority     = var.listener_arn
+
+
+  action {
+    type = "forward"
+    target_group_arn = aws_lb_target_group.main.arn
+  }
+  condition {
+    host_header {
+      values = ["${local.dns_name}.devops2406.xyz"]
+    }
+  }
+}
+
 
 resource "aws_launch_template" "main" {
   name = "${var.component}-${var.env}"
@@ -53,4 +101,12 @@ resource "aws_autoscaling_group" "main" {
     id = aws_launch_template.main.id
     version = "$Latest"
   }
+}
+
+resource "aws_route53_record" "dns" {
+  zone_id = ""
+  name = local.dns_name
+  type = "CNAME"
+  ttl = 30
+  records = [var.lb_dns_name]
 }
