@@ -35,7 +35,7 @@ resource "aws_launch_template" "main" {
     resource_type = "instance"
     tags          = merge({ Name = "${var.component}-${var.env}", monitor = "true" }, var.tags)
   }
-  user_data = templatefile("${path.module}/userdata.sh", {
+  user_data = base64encode("${path.module}/userdata.sh", {
     env       = var.env
     component = var.component
   })
