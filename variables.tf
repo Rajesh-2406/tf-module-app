@@ -14,6 +14,4 @@ variable "subnets" {}
 variable "allow_ssh_cidr" {}
 variable "lb_dns_name" {}
 variable "listener_arn" {}
-variable "lb_rule_priority" {}
-variable "allow_prometheus_cidr" {}
 variable "kms_arn" {}
