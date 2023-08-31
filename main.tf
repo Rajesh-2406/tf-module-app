@@ -27,28 +27,6 @@ resource "aws_security_group" "main" {
     name = "${var.component}-${var.env}-sg"
   }
 }
-
-resource "aws_lb_target_group" "main" {
-  name = "${var.component}-${var.env}-tg"
-  port = var.app_port
-  protocol = "HTTP"
-  deregistration_delay = "30"
-  vpc_id = var.vpc_id
-
-  health_check {
-    enabled = true
-    interval = 5
-    path = "/health"
-    port = var.app_port
-    protocol = "HTTP"
-    timeout = 4
-    healthy_threshold = 2
-    unhealthy_threshold = 2
-  }
-}
-
-
-
 resource "aws_launch_template" "main" {
   name = "${var.component}-${var.env}"
 
