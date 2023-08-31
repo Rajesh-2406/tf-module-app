@@ -78,6 +78,6 @@ resource "aws_launch_template" "main" {
    zone_id = "Z0536318FEJNHSSCY1LA"
    name    = "${var.component}-dev"
    type    = "CNAME"
-   ttl = 30
+   ttl     = 30
    records = [var.lb_dns_name]
  }
