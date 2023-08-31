@@ -12,3 +12,4 @@ variable "tags" {
 variable "desired_capacity" {}
 variable "subnets" {}
 variable "kms_key_id" {}
+variable "allow_ssh_cidr" {}

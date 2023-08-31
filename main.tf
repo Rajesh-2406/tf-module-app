@@ -9,6 +9,12 @@ resource "aws_security_group" "main" {
     protocol    = "tcp"
     cidr_blocks = var.sg_subnet_cidr
   }
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = var.allow_ssh_cidr
+  }
   egress {
     from_port   = 0
     to_port     = 0
@@ -38,7 +44,7 @@ resource "aws_launch_template" "main" {
   user_data = base64encode("${path.module}/userdata.sh", {
     env       = var.env
     component = var.component
-  })
+ /* })
   block_device_mappings {
     device_name = "/dev/sda1"
 
@@ -47,12 +53,13 @@ resource "aws_launch_template" "main" {
     encrypted   = "true"
     kms_key_id = var.kms_key_id
   }
- }
+ }*/
 }
   resource "aws_autoscaling_group" "main" {
     desired_capacity = var.desired_capacity
     max_size = var.max_size
     min_size = var.min_size
+    vpc_zone_identifier = var.subnets
 
     launch_template {
       id = aws_launch_template.main.id
