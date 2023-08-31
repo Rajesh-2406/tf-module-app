@@ -22,7 +22,7 @@ resource "aws_security_group" "main" {
   }
 }
 
-resource "aws_lanch_template" "main" {
+resource "aws_launch_template" "main" {
   name = "${var.component}-${var.env}"
 
   iam_instance_profile {
@@ -43,7 +43,7 @@ user_data = base64encode(templatefile("${path.module}/userdata.sh", {
     }))
     }
 
-resource "aws_autoscalling_group" "main" {
+resource "aws_autoscaling_group" "main" {
   desired_capacity = var.desired_capacity
   max_size  = var.max_size
   min_size = var.min_size
