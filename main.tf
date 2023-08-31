@@ -104,7 +104,7 @@ resource "aws_autoscaling_group" "main" {
 }
 
 resource "aws_route53_record" "dns" {
-  zone_id = ""
+  zone_id = "Z0536318FEJNHSSCY1LA"
   name = local.dns_name
   type = "CNAME"
   ttl = 30
