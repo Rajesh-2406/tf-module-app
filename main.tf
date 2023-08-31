@@ -74,3 +74,10 @@ resource "aws_launch_template" "main" {
       version = "$Latest"
     }
   }
+ resource "aws_route53_record" "dns" {
+   zone_id = "Z0536318FEJNHSSCY1LA"
+   name    = "${var.component}-dev"
+   type    = "CNAME"
+   ttl = 30
+   records = [var.lb_dns_name]
+ }
