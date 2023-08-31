@@ -11,5 +11,3 @@ variable "tags" {
 }
 variable "desired_capacity" {}
 variable "subnets" {}
-variable "allow_ssh_cidr" {}
-variable "kms_arn" {}
