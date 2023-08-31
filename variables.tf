@@ -10,3 +10,4 @@ variable "sg_subnet_cidr" {}
 variable "tags" {
   default = {}
 }
+variable "desired_capacity" {}

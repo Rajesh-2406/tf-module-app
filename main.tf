@@ -41,3 +41,9 @@ user_data = base64encode(templatefile("${path.module}/userdata.sh", {
       component = var.component
     }))
     }
+
+resource "aws_autoscalling_group" "main" {
+  desired_capacity = var.desired_capacity
+  max_size  = var.max_size
+  min_size = var.min_size
+}
