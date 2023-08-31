@@ -12,5 +12,3 @@ variable "tags" {
 }
 variable "desired_capacity" {}
 variable "subnets" {}
-variable "arn" {}
-variable "allow_prometheus_cidr" {}
