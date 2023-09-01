@@ -92,5 +92,5 @@ resource "aws_launch_template" "main" {
    name    = "${var.component}-${var.env}"
    type    = "CNAME"
    ttl     = 30
-   records = [var.lb_dns_name]
+   records = [var.lb_dns_name_private]
  }
