@@ -13,6 +13,6 @@ variable "desired_capacity" {}
 variable "subnets" {}
 variable "kms_key_id" {}
 variable "allow_ssh_cidr" {}
-variable "lb_dns_name_private" {}
+variable "lb_dns_name" {}
 variable "lb_rule_priority" {}
 variable "listener_arn" {}
