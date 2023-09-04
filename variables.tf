@@ -16,3 +16,4 @@ variable "allow_ssh_cidr" {}
 variable "lb_dns_name" {}
 variable "lb_rule_priority" {}
 variable "listener_arn" {}
+variable "kms_arn" {}
