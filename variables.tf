@@ -17,3 +17,4 @@ variable "lb_dns_name" {}
 variable "lb_rule_priority" {}
 variable "listener_arn" {}
 variable "kms_arn" {}
+variable "extra_param_access" {}
