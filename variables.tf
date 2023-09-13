@@ -18,3 +18,4 @@ variable "lb_rule_priority" {}
 variable "listener_arn" {}
 variable "kms_arn" {}
 variable "extra_param_access" {}
+variable "allow_prometheus_cidr" {}
