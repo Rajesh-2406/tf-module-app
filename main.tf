@@ -102,6 +102,7 @@ resource "aws_launch_template" "main" {
       version = "$Latest"
     }
   }
+
  resource "aws_route53_record" "dns" {
    zone_id = "Z05176683IFS2PVLQ9VF0"
    name    = "${var.component}-${var.env}"
