@@ -65,7 +65,7 @@ resource "aws_lb_listener_rule" "main" {
   }
   condition {
     host_header {
-      values = ["${var.component}-${var.env}.devops2406.xyz"]
+      values = ["${local.dns_name}.devops2406.xyz"]
     }
   }
 }
@@ -105,7 +105,7 @@ resource "aws_launch_template" "main" {
 
  resource "aws_route53_record" "dns" {
    zone_id = "Z05176683IFS2PVLQ9VF0"
-   name    = var.component == "frontend" && var.env == "dev" ? "www" : "${var.component}-${var.env}"
+   name    = local.dns_name
    type    = "CNAME"
    ttl     = 30
    records = [var.lb_dns_name]
