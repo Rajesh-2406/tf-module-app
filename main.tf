@@ -104,7 +104,7 @@ resource "aws_launch_template" "main" {
   }
 
  resource "aws_route53_record" "dns" {
-   zone_id = "Z01880432PATWXSDPVK72"
+   zone_id = "Z00116476BN1RJ4Q1IMX"
    name    = local.dns_name
    type    = "CNAME"
    ttl     = 30
